@@ -1,0 +1,71 @@
+<app-menu></app-menu>
+<mat-sidenav-container>
+    <mat-sidenav mode="side" [(opened)]="navigator.opened">
+        <div class="with-icon">
+            <mat-icon color="accent">menu_open</mat-icon>
+            <span>Menu Items</span>
+        </div>
+        <mat-list>
+            <mat-list-item>
+                <div class="with-icon hover" (click)=home() style="cursor: pointer;">
+                    <mat-icon color="accent">home</mat-icon>
+                    Home
+                </div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-list-item> 
+                            <div class="with-icon hover"style="cursor: pointer;">
+                                <mat-icon color="accent">list_alt
+                                </mat-icon>
+                                Book Inventory
+                            </div>
+                        </mat-list-item>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <span>
+                    <div class="with-icon hover" (click)=addBooks()  style="cursor: pointer;">
+                        <mat-icon color="accent">contacts</mat-icon>
+                        Add Books
+                    </div><br>
+                    <div class="with-icon hover"  style="cursor: pointer;">
+                        <mat-icon color="accent">how_to_reg</mat-icon>
+                        Show Books
+                    </div>
+                </span>
+            </mat-expansion-panel>
+            <mat-divider></mat-divider>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <mat-list-item>
+                            <div class="with-icon hover"style="cursor: pointer;">
+                                <mat-icon color="accent">assignment
+                                </mat-icon>
+                                Students
+                            </div>
+                        </mat-list-item>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <span>
+                    <div class="with-icon hover" style="cursor: pointer;">
+                        <mat-icon color="accent">assignment_returned</mat-icon>
+                        Add Students
+                    </div><br>
+                    <div class="with-icon hover"  style="cursor: pointer;">
+                        <mat-icon color="accent">find_in_page</mat-icon>
+                        View Profiles
+                    </div>
+                </span>
+            </mat-expansion-panel>
+
+            <!-- <mat-list-item>Item 3</mat-list-item> -->
+        </mat-list>
+    </mat-sidenav>
+    <mat-sidenav-content (click)=navigator.close()>
+        <span *ngIf='homeScreen'><app-dashboard></app-dashboard></span>
+        <span *ngIf='books'><app-addbooks></app-addbooks></span>
+    </mat-sidenav-content>
+</mat-sidenav-container>

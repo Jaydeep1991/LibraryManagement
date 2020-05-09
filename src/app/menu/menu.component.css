@@ -1,0 +1,23 @@
+.with-icon {
+    display: flex;
+    align-items: center;
+}
+.login{
+    position:absolute;
+    right: 0;
+    margin-right: 5%;
+}
+.library{
+    position: absolute;
+    margin-left: 15%;
+}
+#name{
+    position:absolute;
+    right: 0;
+    margin-right: 22%; 
+}
+#role{
+    position:absolute;
+    right: 0;
+    margin-right: 15%; 
+}

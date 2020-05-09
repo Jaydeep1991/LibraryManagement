@@ -1,0 +1,27 @@
+<div class="container" style="padding: 0;">
+    <mat-card>
+        <mat-card-title style="text-align: center;">Add Books</mat-card-title>
+        <mat-dialog-content>
+            <div class="row" style="height: 40px;"></div>
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <form>
+                        
+                        <mat-form-field>
+                            <input matInput name='registNum' [(ngModel)]=this.registrationNumber readonly>
+                        </mat-form-field>
+                        <button mat-raised-button  (click)=generateId() color="accent" style="margin-left: 10px;">
+                            <mat-icon color="primary" style="color:gold;">add_box
+
+                            </mat-icon>
+                            <span>Book ID</span></button>   
+                            
+                           
+                    </form>
+                </div>
+            </div>
+        </mat-dialog-content>
+    </mat-card>
+
+</div>

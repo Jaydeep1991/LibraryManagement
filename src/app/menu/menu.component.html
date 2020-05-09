@@ -1,0 +1,24 @@
+<mat-toolbar color="primary">
+    <!-- <mat-icon color="accent" *ngIf="loginService.isLoggedIn()">menu</mat-icon><a routerLink=""
+        style="text-decoration: none;color: aliceblue;margin-right: 700px;" *ngIf="loginService.isLoggedIn()">Menu</a> -->
+
+    <mat-icon color="accent" *ngIf="loginService.isLoggedIn()">menu</mat-icon>
+    <!-- <span *ngIf="loginService.isLoggedIn()" style="cursor: pointer;">Menu</span> -->
+    <span *ngIf="loginService.isLoggedIn()" (click)=navigateService.sidevav() style="cursor: pointer;">Menu</span>
+    
+    <h3 class="library">Library Management</h3>
+    <button mat-raised-button color="accent" class="login" *ngIf="!loginService.isLoggedIn()" (click)=login()>
+        <mat-icon>launch</mat-icon><span>login</span>
+    </button>
+
+
+    <span *ngIf="loginService.isLoggedIn()" id="name">
+        <div class="with-icon">
+            <mat-icon style="color:chartreuse;">person</mat-icon>{{name}}
+        </div>
+    </span>
+
+    <button mat-raised-button color="warn" class="login" *ngIf="loginService.isLoggedIn()" (click)=logout()>
+        <mat-icon>exit_to_app</mat-icon><span>logout</span>
+    </button>
+</mat-toolbar>

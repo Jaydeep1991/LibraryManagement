@@ -1,0 +1,27 @@
+.with-icon {
+    display: flex;
+    align-items: center;
+}
+
+.navbar{
+    justify-content: space-between;
+}
+mat-sidenav-container{
+    height: 550px;
+}
+mat-sidenav{
+    background-color:#cdf5c9;
+    width: 23%;
+    padding: 19px;
+}
+/*
+mat-sidenav-content{
+    padding-left: 10px;
+}
+*/
+.mat-expansion-panel-header{
+    padding: 0%;
+}
+.hover:hover{
+    background-color:#f4eeff;
+}

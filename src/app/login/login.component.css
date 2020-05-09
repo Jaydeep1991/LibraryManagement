@@ -1,0 +1,38 @@
+
+.example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 95%;
+  }
+  form{
+    display: inline-block;
+    border: 2px solid green;
+    padding: 4%;
+    width: 30%;
+    margin-top:5%;
+    border-radius: 20px;
+    margin-left: 30%;
+    background-color: white;
+}
+.container-fluid{
+    background-color:blueviolet ;
+    height: 100vh;
+    
+}
+a{
+    text-decoration: none;
+    margin-left: 25%;
+}
+a:hover{
+    text-decoration: underline;
+    color: magenta;
+}
+hr{
+    width: 70%;
+    margin-left: 4%;
+    color: lawngreen;
+}
