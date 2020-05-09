@@ -14,11 +14,11 @@ mat-sidenav{
     width: 23%;
     padding: 19px;
 }
-/*
+
 mat-sidenav-content{
-    padding-left: 10px;
+    padding-left: 15px;
 }
-*/
+
 .mat-expansion-panel-header{
     padding: 0%;
 }

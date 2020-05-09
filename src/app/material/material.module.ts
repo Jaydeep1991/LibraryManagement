@@ -10,10 +10,12 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatCardModule} from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
 
 const materialComponents=[
   MatButtonModule,MatIconModule,MatMenuModule,MatToolbarModule,MatDialogModule,MatInputModule,MatSidenavModule,MatDividerModule,
-  MatListModule,MatExpansionModule,MatCardModule
+  MatListModule,MatExpansionModule,MatCardModule,MatFormFieldModule,MatSelectModule
 ]
 
 

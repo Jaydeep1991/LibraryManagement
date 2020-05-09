@@ -11,6 +11,11 @@ export class AddbooksComponent implements OnInit {
 
   registrationNumber: string = '';
   errorMessage: string = '';
+  bookName:string='';
+  authorName:string='';
+  bookPrice:number;
+  bookType:string='';
+  
   constructor(private bookService: BookService,private toasterService: ToasterService) { }
 
   ngOnInit(): void {
