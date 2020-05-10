@@ -11,6 +11,9 @@ export class data{
 export class bookType{
   constructor(public statusCode:number,public message:string,public data:Array<data>){}
 }
+export class saveBookResponse{
+  constructor(public statusCode:number,public message:string){}
+}
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +29,10 @@ export class BookService {
 
     getListOfBookType(){
       return this.http.get<bookType>(`${environment.url}/api/books/showAllBookType`);
+    }
+
+    saveBook(data){
+      return this.http.post<saveBookResponse>(`${environment.url}/api/books/saveBook`,data);
     }
   
   

@@ -3,13 +3,13 @@
         <h2>SignIn</h2>
         <mat-form-field class="example-full-width">
             <mat-label>Enter Email</mat-label>
-            <input type="text" matInput placeholder="abc@gmail.com" name="email" [(ngModel)]='email' required>
+            <input type="text" matInput placeholder="abc@gmail.com" name="email" [(ngModel)]='email' required autocomplete="off"> 
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
             <mat-label>Enter Password</mat-label>
             <input type="password" matInput placeholder="Password" name="password" [(ngModel)]='password' required
-                matInput [type]="hide ? 'password' : 'text'">
+                matInput [type]="hide ? 'password' : 'text'" autocomplete="off">
                 <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
                     <mat-icon color="accent">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </button>

@@ -10,7 +10,7 @@ mat-sidenav-container{
     height: 600px;
 }
 mat-sidenav{
-    background-color:#cdf5c9;
+    background-color:white;
     width: 23%;
     padding: 19px;
 }
