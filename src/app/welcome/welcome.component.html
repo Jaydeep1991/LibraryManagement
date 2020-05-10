@@ -1,4 +1,5 @@
 <app-menu></app-menu>
+<div class="container-fluid cont">
 <mat-sidenav-container>
     <mat-sidenav mode="side" [(opened)]="navigator.opened">
         <div class="with-icon">
@@ -69,5 +70,6 @@
         <span *ngIf='books'><app-addbooks></app-addbooks></span>
     </mat-sidenav-content>
 </mat-sidenav-container>
+</div>
 <br><br>
 <app-footer></app-footer>

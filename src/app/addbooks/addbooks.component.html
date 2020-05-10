@@ -54,9 +54,9 @@
                     <div class="col-md-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Book Type</mat-label>
-                            <mat-select [(value)]="bookType">
-                                <mat-option>
-
+                            <mat-select [(value)]="bookType.id">
+                                <mat-option *ngFor='let books of bookType'>
+                                    {{books.bookgener}}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
@@ -75,7 +75,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="row" style="height: 100px;"></div>
+                <div class="row" style="height: 149px;"></div>
 
             </form>
         </mat-dialog-content>

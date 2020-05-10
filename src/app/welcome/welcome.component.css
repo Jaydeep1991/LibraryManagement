@@ -7,7 +7,7 @@
     justify-content: space-between;
 }
 mat-sidenav-container{
-    height: 550px;
+    height: 600px;
 }
 mat-sidenav{
     background-color:#cdf5c9;
@@ -24,4 +24,10 @@ mat-sidenav-content{
 }
 .hover:hover{
     background-color:#f4eeff;
+}
+.cont{
+    padding-left: 0;
+    padding-right: 0;
+    /* height: 600px; */
+    height: 90%;
 }
