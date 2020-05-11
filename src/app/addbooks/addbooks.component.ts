@@ -6,7 +6,7 @@ export class Books {
   constructor(public id: number, public bookgener: string) { }
 }
 export class saveBooks {
-  constructor(public bookId: number, public authorName: string, public bookPrice: number, public bookGenere: string) { }
+  constructor(public bookId: number,public bookName:string ,public authorName: string, public bookPrice: number, public bookGenere: string) { }
 }
 
 @Component({
@@ -23,7 +23,7 @@ export class AddbooksComponent implements OnInit {
   bookPrice: number;
   selectedBook: string;
   bookType: Books[];
-  data = new saveBooks(0, '', 0, '');
+  data = new saveBooks(0,'', '', 0, '');
 
   constructor(private bookService: BookService, private toasterService: ToasterService) { }
 
@@ -76,6 +76,7 @@ export class AddbooksComponent implements OnInit {
   }
 
   saveBook() {
+    this.data.bookName=this.bookName;
     this.data.bookId = this.registrationNumber;
     this.data.authorName = this.authorName;
     this.data.bookPrice = this.bookPrice;

@@ -9,7 +9,8 @@
                     <div class="col-md-6">
                         <mat-form-field appearance="outline">
                             <mat-label>Book Registration Number</mat-label>
-                            <input matInput name='registNum' [(ngModel)]=this.registrationNumber readonly required autocomplete="off">
+                            <input matInput name='registNum' [(ngModel)]=this.registrationNumber readonly 
+                                autocomplete="off" required>
                             <mat-icon matSuffix color="warn">local_library</mat-icon>
                         </mat-form-field>
                         <button mat-raised-button (click)=generateId() color="accent" style="margin-left: 10px;">
@@ -25,7 +26,7 @@
                         <mat-form-field class="example-full-width">
                             <mat-label>Book Name</mat-label>
                             <input matInput placeholder="All's Well that Ends well" type="text" name="bookName"
-                                [(ngModel)]='bookName' required autocomplete="off">
+                                [(ngModel)]='bookName'  autocomplete="off" required>
                             <mat-icon matSuffix style="color:crimson;">import_contacts</mat-icon>
                         </mat-form-field>
                     </div>
@@ -34,7 +35,7 @@
                         <mat-form-field class="example-full-width">
                             <mat-label>Author Name</mat-label>
                             <input matInput placeholder="William Shakespeare" type="text" name="authorName"
-                                [(ngModel)]='authorName' required autocomplete="off">
+                                [(ngModel)]='authorName'  autocomplete="off" required>
                             <mat-icon matSuffix style="color: crimson;">person</mat-icon>
                         </mat-form-field>
                     </div>
@@ -45,7 +46,7 @@
                         <mat-form-field class="example-full-width">
                             <mat-label>Book Price</mat-label>
                             <input matInput placeholder="$230" type="text" name="bookPrice" [(ngModel)]='bookPrice'
-                                 autocomplete="off">
+                                autocomplete="off">
                             <mat-icon matSuffix style="color:crimson;">monetization_on</mat-icon>
                         </mat-form-field>
                     </div>
@@ -53,7 +54,7 @@
                     <div class="col-md-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Genres of Books</mat-label>
-                            <mat-select [(ngModel)]='selectedBook' name='book' required>
+                            <mat-select [(ngModel)]='selectedBook' name='book'>
                                 <mat-option *ngFor='let books of bookType' [value]='books.bookgener'>
                                     {{books.bookgener}}
                                 </mat-option>
