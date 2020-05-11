@@ -26,11 +26,14 @@
                         <mat-form-field class="example-full-width">
                             <mat-label>Book Name</mat-label>
                             <input matInput placeholder="All's Well that Ends well" type="text" name="bookName"
-                                [(ngModel)]='bookName'  autocomplete="off" required>
+                                [(ngModel)]='bookName'  autocomplete="off" required  (change)="checkDuplicateBook()">
                             <mat-icon matSuffix style="color:crimson;">import_contacts</mat-icon>
                         </mat-form-field>
+                        <span *ngIf=bookFlag style="color: red;font-style: italic;" >*Please enter BookName</span>
                     </div>
-                    <div class="col-md-2"></div>
+                    <div class="col-md-2">
+                        
+                    </div>
                     <div class="col-md-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Author Name</mat-label>
@@ -38,6 +41,7 @@
                                 [(ngModel)]='authorName'  autocomplete="off" required>
                             <mat-icon matSuffix style="color: crimson;">person</mat-icon>
                         </mat-form-field>
+                        <span *ngIf=authorFlag style="color: red;font-style: italic;">*Please enter Author Name</span>
                     </div>
                 </div>
                 <div class="row" style="height: 30px;"> </div>
@@ -46,20 +50,22 @@
                         <mat-form-field class="example-full-width">
                             <mat-label>Book Price</mat-label>
                             <input matInput placeholder="$230" type="text" name="bookPrice" [(ngModel)]='bookPrice'
-                                autocomplete="off">
+                                autocomplete="off" required>
                             <mat-icon matSuffix style="color:crimson;">monetization_on</mat-icon>
                         </mat-form-field>
+                        <span *ngIf=bookPriceFlag style="color: red;font-style: italic;">*Please enter Book Price</span>
                     </div>
                     <div class="col-md-2"></div>
                     <div class="col-md-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Genres of Books</mat-label>
-                            <mat-select [(ngModel)]='selectedBook' name='book'>
+                            <mat-select [(ngModel)]='selectedBook' name='book' required>
                                 <mat-option *ngFor='let books of bookType' [value]='books.bookgener'>
                                     {{books.bookgener}}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
+                        <span *ngIf=bookGenFlag style="color: red;font-style: italic;">*Please Select Book Genere</span>
                     </div>
                 </div>
                 <div class="row" style="height:50px;"></div>
@@ -70,7 +76,7 @@
                         </button>
                     </div>
                     <div class="col-md-2">
-                        <button mat-raised-button type="reset" color="warn">
+                        <button mat-raised-button type="reset"  (click)=resetButtom()  color="warn">
                             <mat-icon style="color:white;">replay</mat-icon><span>Reset</span>
                         </button>
                     </div>
