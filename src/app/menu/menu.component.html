@@ -6,7 +6,7 @@
     <!-- <span *ngIf="loginService.isLoggedIn()" style="cursor: pointer;">Menu</span> -->
     <span *ngIf="loginService.isLoggedIn()" (click)=navigateService.sidevav() style="cursor: pointer;">Menu</span>
     
-    <h3 class="library">Library Management</h3>
+    <h3 class="library">Digital Library</h3>
     <button mat-raised-button color="accent" class="login" *ngIf="!loginService.isLoggedIn()" (click)=login()>
         <mat-icon>launch</mat-icon><span>login</span>
     </button>
