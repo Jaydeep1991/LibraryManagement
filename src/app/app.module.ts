@@ -15,6 +15,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { MaterialModule } from './material/material.module';
 import { AddbooksComponent } from './addbooks/addbooks.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ShowBookComponent } from './show-book/show-book.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     FooterComponent,
     LogoutComponent,
     AddbooksComponent,
-    DashboardComponent
+    DashboardComponent,
+    ShowBookComponent
   ],
   imports: [
     BrowserModule,

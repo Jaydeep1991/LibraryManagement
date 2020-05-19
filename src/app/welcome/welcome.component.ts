@@ -11,6 +11,7 @@ export class WelcomeComponent implements OnInit {
   
   books:boolean=false;
   homeScreen:boolean=true;
+  shBook:boolean=false;
 
   constructor(public navigator:NavigatorService) { }
   
@@ -20,10 +21,17 @@ export class WelcomeComponent implements OnInit {
   addBooks(){
     this.homeScreen=false;
     this.books=true;
+    this.shBook=false;
   }
   home(){
     this.homeScreen=true;
     this.books=false;
+    this.shBook=false;
+  }
+  showBooks(){
+    this.homeScreen=false;
+    this.books=false;
+    this.shBook=true;
   }
 
 }

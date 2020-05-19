@@ -31,7 +31,7 @@
                         <mat-icon color="accent" style="color: #311b92;">contacts</mat-icon>
                         Add Books
                     </div><br>
-                    <div class="with-icon hover"  style="cursor: pointer;">
+                    <div class="with-icon hover" (click)=showBooks()  style="cursor: pointer;">
                         <mat-icon color="accent" style="color: #311b92;">how_to_reg</mat-icon>
                         Show Books
                     </div>
@@ -68,6 +68,7 @@
     <mat-sidenav-content (click)=navigator.close()>
         <span *ngIf='homeScreen'><app-dashboard></app-dashboard></span>
         <span *ngIf='books'><app-addbooks></app-addbooks></span>
+        <span *ngIf='shBook'><app-show-book></app-show-book></span>
     </mat-sidenav-content>
 </mat-sidenav-container>
 </div>
