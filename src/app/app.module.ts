@@ -14,8 +14,11 @@ import { FooterComponent } from './footer/footer.component';
 import { LogoutComponent } from './logout/logout.component';
 import { MaterialModule } from './material/material.module';
 import { AddbooksComponent } from './addbooks/addbooks.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { ShowBookComponent } from './show-book/show-book.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ChartsModule }from 'ng2-charts';
+import { DashboardComponent } from './dashboard/dashboard.component';
+
 
 @NgModule({
   declarations: [
@@ -37,7 +40,9 @@ import { ShowBookComponent } from './show-book/show-book.component';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

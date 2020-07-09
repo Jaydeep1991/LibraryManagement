@@ -2,18 +2,18 @@
     <mat-card>
         <mat-card-title style="text-align: center;">Add Books</mat-card-title>
         <mat-dialog-content>
-            <form>
+            <form (ngSubmit)="saveNewBook();" [formGroup]="book">
                 <div class="row" style="height: 40px;"></div>
                 <div class="row">
                     <div class="col-md-4"></div>
                     <div class="col-md-6">
                         <mat-form-field appearance="outline">
                             <mat-label>Book Registration Number</mat-label>
-                            <input matInput name='registNum' [(ngModel)]=this.registrationNumber readonly 
-                                autocomplete="off" required>
+                            <input matInput name="bookId" formControlName="bookId" readonly>
                             <mat-icon matSuffix color="warn">local_library</mat-icon>
                         </mat-form-field>
-                        <button mat-raised-button (click)=generateId() color="accent" style="margin-left: 10px;">
+                        <button type="button" mat-raised-button (click)="generateId();" color="accent"
+                            style="margin-left: 10px;">
                             <mat-icon color="primary" style="color:gold;">add_box
                             </mat-icon>
                             <span>Book ID</span>
@@ -26,22 +26,22 @@
                         <mat-form-field class="example-full-width">
                             <mat-label>Book Name</mat-label>
                             <input matInput placeholder="All's Well that Ends well" type="text" name="bookName"
-                                [(ngModel)]='bookName'  autocomplete="off" required  (change)="checkDuplicateBook()">
+                                formControlName="bookName" autocomplete="off" (change)="checkDuplicateBook()">
                             <mat-icon matSuffix style="color:crimson;">import_contacts</mat-icon>
                         </mat-form-field>
-                        <span *ngIf=bookFlag style="color: red;font-style: italic;" >*Please enter BookName</span>
+
                     </div>
                     <div class="col-md-2">
-                        
+
                     </div>
                     <div class="col-md-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Author Name</mat-label>
                             <input matInput placeholder="William Shakespeare" type="text" name="authorName"
-                                [(ngModel)]='authorName'  autocomplete="off" required>
+                                formControlName="authorName" autocomplete="off">
                             <mat-icon matSuffix style="color: crimson;">person</mat-icon>
                         </mat-form-field>
-                        <span *ngIf=authorFlag style="color: red;font-style: italic;">*Please enter Author Name</span>
+
                     </div>
                 </div>
                 <div class="row" style="height: 30px;"> </div>
@@ -49,34 +49,33 @@
                     <div class="col-md-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Book Price</mat-label>
-                            <input matInput placeholder="$230" type="text" name="bookPrice" [(ngModel)]='bookPrice'
-                                autocomplete="off" required>
+                            <input matInput placeholder="$230" type="text" name="bookPrice" formControlName="bookPrice"
+                                autocomplete="off">
                             <mat-icon matSuffix style="color:crimson;">monetization_on</mat-icon>
                         </mat-form-field>
-                        <span *ngIf=bookPriceFlag style="color: red;font-style: italic;">*Please enter Book Price</span>
+
                     </div>
                     <div class="col-md-2"></div>
                     <div class="col-md-4">
                         <mat-form-field class="example-full-width">
                             <mat-label>Genres of Books</mat-label>
-                            <mat-select [(ngModel)]='selectedBook' name='book' required>
+                            <mat-select formControlName="bookGenere" name='book'>
                                 <mat-option *ngFor='let books of bookType' [value]='books.bookgener'>
                                     {{books.bookgener}}
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
-                        <span *ngIf=bookGenFlag style="color: red;font-style: italic;">*Please Select Book Genere</span>
                     </div>
                 </div>
                 <div class="row" style="height:50px;"></div>
                 <div class="row">
                     <div class="col-md-2">
-                        <button mat-raised-button color="primary" (click)=saveBook()>
+                        <button mat-raised-button color="primary" type="submit" [disabled]="!book.valid">
                             <mat-icon style="color:white">save</mat-icon><span>Save</span>
                         </button>
                     </div>
                     <div class="col-md-2">
-                        <button mat-raised-button type="reset"  (click)=resetButtom()  color="warn">
+                        <button mat-raised-button type="reset" color="warn">
                             <mat-icon style="color:white;">restore</mat-icon><span>Reset</span>
                         </button>
                     </div>

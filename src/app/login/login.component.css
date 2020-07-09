@@ -36,3 +36,6 @@ hr{
     margin-left: 4%;
     color: lawngreen;
 }
+button{
+    outline: none;
+ }

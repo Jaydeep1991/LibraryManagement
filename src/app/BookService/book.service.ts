@@ -15,6 +15,16 @@ export class saveBookResponse {
   constructor(public statusCode: number, public message: string) { }
 }
 
+export class BooksType{
+  constructor(public bookId:number,public bookName:string,public authorName:string,public bookPrice:number,public bookGenere:string,
+    public fromDate:Date,public toDate:Date,public noOfDays:number){}
+}
+
+export class showBooks{
+  constructor(public statusCode:number,public message:string,public dataBook:Array<BooksType>){}
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -41,4 +51,13 @@ export class BookService {
     return this.http.post<saveBookResponse>(`${environment.url}/api/books/checkDuplicateBookName`, formdata);
   }
 
+  showBooks(){
+    return this.http.get<showBooks>(`${environment.url}/api/books/showAllBooks`);
+  }
+
+  deleteBook(bookId){
+    const formdata=new FormData();
+    formdata.append('bookId',bookId);
+    return this.http.post<getBookId>(`${environment.url}/api/books/deletebook`,formdata);
+  }
 }

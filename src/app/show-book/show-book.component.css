@@ -1,3 +1,20 @@
 mat-card-title{
     text-align: center;
 }
+table {
+    width: 100%;
+  }
+  .mat-header-cell{
+      background-color: black;
+      color: white;
+  }
+ .cont{
+     padding-left: 0%;
+     padding-right: 0%;
+ }
+ td{
+     width: 18px;
+ }
+ button{
+    outline: none;
+ }

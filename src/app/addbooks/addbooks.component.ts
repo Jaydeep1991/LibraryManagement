@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../BookService/book.service';
 import { ToasterService } from '../toasterService/toaster.service';
+import { Validators,FormGroup, FormControl } from '@angular/forms';
 
 export class Books {
   constructor(public id: number, public bookgener: string) { }
@@ -17,26 +18,23 @@ export class saveBooks {
 export class AddbooksComponent implements OnInit {
 
   registrationNumber: number;
-  errorMessage: string;
   bookName: string;
-  authorName: string;
-  bookPrice: number;
-  selectedBook: string;
   bookType: Books[];
-  data = new saveBooks(0, '', '', 0, '');
-  bookFlag: boolean = false;
-  authorFlag: boolean = false;
-  bookPriceFlag: boolean = false;
-  bookGenFlag: boolean = false;
-  formFlag: boolean = false;
   duplicateBook: string;
   duplicateBookFlag: boolean = false;
-
+  book: FormGroup;
 
   constructor(private bookService: BookService, private toasterService: ToasterService) { }
 
   ngOnInit(): void {
     this.getlistBook();
+    this.book = new FormGroup({
+      "bookId": new FormControl('',Validators.required),
+      "bookName": new FormControl('',Validators.required),
+      "authorName": new FormControl('',Validators.required),
+      "bookPrice": new FormControl('',Validators.required),
+      "bookGenere": new FormControl('')
+    })
   }
 
   generateId() {
@@ -44,41 +42,54 @@ export class AddbooksComponent implements OnInit {
       res => {
 
         if (res.statusCode === 200) {
-          this.successfull(res);
+          this.registrationNumber = res.registrationNumber;
+          console.log(this.registrationNumber);
+          this.book.controls['bookId'].setValue(this.registrationNumber);
         }
         else if (res.statusCode === 400) {
-          this.unsessfull(res);
+          this.toasterService.Warning(res.message);
         }
       },
       err => {
-        this.fatal(err);
+        this.toasterService.Error('Something went Wrong');
       }
     )
   }
-  successfull(res) {
-    this.registrationNumber = res.registrationNumber;
+
+
+  saveNewBook() {
+    console.log(this.book.value);
+    this.bookService.saveBook(this.book.value).subscribe(
+      resp=>{
+        if(resp.statusCode == 200){
+          this.toasterService.Success(resp.message);
+        }
+        else if(resp.statusCode == 400){
+          this.toasterService.Error(resp.message);
+        }
+        else if(resp.statusCode == 204){
+          this.toasterService.Error(resp.message);
+        }
+      },
+      err=>{
+        this.toasterService.Error('Something went wrong');
+      }
+    )
   }
-  unsessfull(res) {
-    this.errorMessage = res.mesage;
-    this.toasterService.Warning(this.errorMessage);
-  }
-  fatal(err) {
-    this.errorMessage = err.mesage;
-    this.toasterService.Error('Something went Wrong');
-  }
+
+
+
 
   getlistBook() {
     this.bookService.getListOfBookType().subscribe(
       resp => {
         if (resp.statusCode === 200) {
-          this.successfullBookList(resp);
+          this.bookType = resp.data;
         }
       }
     )
   }
-  successfullBookList(resp) {
-    this.bookType = resp.data;
-  }
+
 
   checkDuplicateBook() {
     this.bookService.checkDuplicateBook(this.bookName).subscribe(
@@ -94,59 +105,4 @@ export class AddbooksComponent implements OnInit {
       }
     );
   }
-
-  saveBook() {
-    this.data.bookName = this.bookName;
-    this.data.bookId = this.registrationNumber;
-    this.data.authorName = this.authorName;
-    this.data.bookPrice = this.bookPrice;
-    this.data.bookGenere = this.selectedBook;
-    if ((this.bookName === undefined) || (this.bookName === null)) {
-      this.formFlag = true;
-      this.bookFlag = true;
-    }
-    if ((this.bookPrice === undefined) || (this.bookPrice === null)) {
-      this.formFlag = true;
-      this.bookPriceFlag = true;
-    }
-    if ((this.authorName === undefined) || (this.authorName === null)) {
-      this.formFlag = true;
-      this.authorFlag = true;
-    }
-    if ((this.selectedBook === undefined) || (this.selectedBook === null)) {
-      this.formFlag = true;
-      this.bookGenFlag = true;
-    }
-    if ((this.formFlag === false) || (this.duplicateBookFlag === false)) {
-      this.bookService.saveBook(this.data).subscribe(
-        resp => {
-          if (resp.statusCode === 200) {
-            this.toasterService.Success(resp.message)
-          }
-          if (resp.statusCode === 204) {
-            this.toasterService.Warning(resp.message);
-          }
-          else if (resp.statusCode === 400) {
-            this.toasterService.Error(resp.message)
-          }
-        },
-        err => {
-          this.toasterService.Error('Something Error Happened')
-        }
-      );
-    }
-    if (this.duplicateBookFlag === true) {
-      this.toasterService.Warning(this.duplicateBook);
-    }
-  }
-
-  resetButtom() {
-    this.bookFlag = false;
-    this.authorFlag = false;
-    this.bookPriceFlag = false;
-    this.bookGenFlag = false;
-    this.duplicateBookFlag = false;
-  }
-
-
 }
