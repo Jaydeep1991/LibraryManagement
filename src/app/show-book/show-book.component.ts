@@ -24,7 +24,6 @@ export class ShowBookComponent implements OnInit {
   ngOnInit(): void {
     this.bookService.showBooks().subscribe(
       resp => {
-        console.log(resp);
         if (resp.statusCode == 200) {
           this.dataSource = resp.dataBook;
         }

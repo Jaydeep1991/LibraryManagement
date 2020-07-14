@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../BookService/book.service';
 import { ToasterService } from '../toasterService/toaster.service';
-import { Validators,FormGroup, FormControl } from '@angular/forms';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
 
 export class Books {
   constructor(public id: number, public bookgener: string) { }
@@ -29,10 +29,10 @@ export class AddbooksComponent implements OnInit {
   ngOnInit(): void {
     this.getlistBook();
     this.book = new FormGroup({
-      "bookId": new FormControl('',Validators.required),
-      "bookName": new FormControl('',Validators.required),
-      "authorName": new FormControl('',Validators.required),
-      "bookPrice": new FormControl('',Validators.required),
+      "bookId": new FormControl('', Validators.required),
+      "bookName": new FormControl('', Validators.required),
+      "authorName": new FormControl('', Validators.required),
+      "bookPrice": new FormControl('', Validators.required),
       "bookGenere": new FormControl('')
     })
   }
@@ -43,7 +43,6 @@ export class AddbooksComponent implements OnInit {
 
         if (res.statusCode === 200) {
           this.registrationNumber = res.registrationNumber;
-          console.log(this.registrationNumber);
           this.book.controls['bookId'].setValue(this.registrationNumber);
         }
         else if (res.statusCode === 400) {
@@ -58,23 +57,28 @@ export class AddbooksComponent implements OnInit {
 
 
   saveNewBook() {
-    console.log(this.book.value);
-    this.bookService.saveBook(this.book.value).subscribe(
-      resp=>{
-        if(resp.statusCode == 200){
-          this.toasterService.Success(resp.message);
+    if (!this.duplicateBookFlag) {
+      console.log(this.book.value);
+      this.bookService.saveBook(this.book.value).subscribe(
+        resp => {
+          if (resp.statusCode == 200) {
+            this.toasterService.Success(resp.message);
+          }
+          else if (resp.statusCode == 400) {
+            this.toasterService.Error(resp.message);
+          }
+          else if (resp.statusCode == 204) {
+            this.toasterService.Error(resp.message);
+          }
+        },
+        err => {
+          this.toasterService.Error('Something went wrong');
         }
-        else if(resp.statusCode == 400){
-          this.toasterService.Error(resp.message);
-        }
-        else if(resp.statusCode == 204){
-          this.toasterService.Error(resp.message);
-        }
-      },
-      err=>{
-        this.toasterService.Error('Something went wrong');
-      }
-    )
+      )
+    }
+    else {
+      this.toasterService.Error("Book Already exists");
+    }
   }
 
 
@@ -92,7 +96,7 @@ export class AddbooksComponent implements OnInit {
 
 
   checkDuplicateBook() {
-    this.bookService.checkDuplicateBook(this.bookName).subscribe(
+    this.bookService.checkDuplicateBook(this.book.get('bookName').value).subscribe(
       resp => {
         if (resp.statusCode === 409) {
           this.duplicateBookFlag = true;

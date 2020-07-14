@@ -32,23 +32,31 @@ export class DashboardComponent implements OnInit {
       resp => {
         if (resp.statusCode == 200) {
           this.data = resp.data;
-          this.history = this.data[0].bookCount;
-          this.mystery = this.data[1].bookCount;
-          this.science = this.data[2].bookCount;
-          this.textbook = this.data[3].bookCount;
-
-          console.log('Inside method ', this.history);
-          console.log('Inside method ', this.mystery);
+          if (this.data[0] != null) {
+            this.science = this.data[0].bookCount;
+          }
+          if (this.data[1] != null) {
+            this.history = this.data[1].bookCount;
+          }
+          if (this.data[2] != null) {
+            this.mystery = this.data[2].bookCount;
+          }
+          if (this.data[3] != null) {
+            this.textbook = this.data[3].bookCount;
+          }
+          this.pieChartData = [this.history, this.mystery, this.science, this.textbook];
         }
+
         else if (resp.statusCode == 400) {
           this.toaster.Error(resp.message);
         }
+       
       },
       err => {
         this.toaster.Error("Something went wrong");
       }
     );
-
+    
   }
 
   public pieChartOptions: ChartOptions = {
@@ -58,7 +66,7 @@ export class DashboardComponent implements OnInit {
     }
   };
   public pieChartLabels: Label[] = ['History', 'Mystery', 'Science', 'Textbook'];
-  public pieChartData: number[] = [this.history, this.mystery, this.science, this.textbook];
+  public pieChartData: number[] = [];
   public pieChartType: ChartType = 'pie';
   public pieChartLegend = true;
   public pieChartPlugins = [pluginDataLabels];
